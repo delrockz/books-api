@@ -24,7 +24,7 @@ const AdjustStockModal: React.FC<PropTypes> = ({ open, setOpen, book, setBook })
     <Modal
       title='Adjust Stock Quantity'
       visible={open}
-      onCancel={() => setOpen(false)}
+      onCancel={() => clearModal()}
       destroyOnClose={true}
       onOk={() => setOpen(false)}
       footer={
