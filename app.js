@@ -15,4 +15,4 @@ mongoose.connect(process.env.DB_PATH, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-app.listen(5000)
+app.listen(process.env.PORT || 5000)
