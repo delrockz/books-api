@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate two original BTS project PDFs (PTS-1 and PTS-2) in IGNOU-style format.
-The content is intentionally drafted in original language and can be edited further
-with candidate-specific details before final academic submission.
+Generate two original BTS project reports (PTS-1 and PTS-2) in IGNOU-style format.
+Outputs are produced in both PDF and editable Microsoft Word (.docx) formats.
 """
 
 from __future__ import annotations
@@ -13,6 +12,9 @@ import re
 import textwrap
 from typing import List, Sequence, Tuple
 
+from docx import Document
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Cm, Pt
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from reportlab.lib.pagesizes import A4
@@ -1088,6 +1090,166 @@ def add_table(story, styles, rows: List[List[str]], title: str):
     story.append(Spacer(1, 10))
 
 
+def configure_docx_defaults(doc: Document):
+    """Apply basic Word formatting defaults."""
+    normal = doc.styles["Normal"]
+    normal.font.name = "Times New Roman"
+    normal.font.size = Pt(12)
+
+    for section in doc.sections:
+        section.top_margin = Cm(2.0)
+        section.bottom_margin = Cm(2.0)
+        section.left_margin = Cm(2.2)
+        section.right_margin = Cm(2.2)
+
+
+def add_docx_heading(doc: Document, text: str, level: int = 1, align=WD_ALIGN_PARAGRAPH.LEFT):
+    p = doc.add_heading(level=level)
+    p.alignment = align
+    run = p.add_run(text)
+    run.font.name = "Times New Roman"
+    run.bold = True
+    run.font.size = Pt(15 if level == 1 else 13)
+    p.paragraph_format.space_after = Pt(8)
+
+
+def add_docx_paragraph(
+    doc: Document,
+    text: str,
+    align=WD_ALIGN_PARAGRAPH.JUSTIFY,
+    bold: bool = False,
+    size: int = 12,
+):
+    p = doc.add_paragraph()
+    p.alignment = align
+    p.paragraph_format.line_spacing = 1.5
+    p.paragraph_format.space_after = Pt(8)
+    run = p.add_run(text)
+    run.font.name = "Times New Roman"
+    run.font.size = Pt(size)
+    run.bold = bold
+
+
+def add_docx_cover(doc: Document, report_title: str, course_code: str):
+    add_docx_paragraph(doc, "INDIRA GANDHI NATIONAL OPEN UNIVERSITY", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=14)
+    add_docx_paragraph(doc, "B.A. TOURISM STUDIES (BTS)", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=13)
+    add_docx_paragraph(doc, "", align=WD_ALIGN_PARAGRAPH.CENTER)
+    add_docx_paragraph(doc, report_title, align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=16)
+    add_docx_paragraph(doc, "", align=WD_ALIGN_PARAGRAPH.CENTER)
+    add_docx_paragraph(doc, "Programme Code: BTS")
+    add_docx_paragraph(doc, f"Course Code: {course_code}")
+    add_docx_paragraph(doc, "Enrolment No.: ____________________")
+    add_docx_paragraph(doc, "Study Centre Code: ____________________")
+    add_docx_paragraph(doc, "Regional Centre: ____________________")
+    add_docx_paragraph(doc, "Name of Candidate: ____________________")
+    add_docx_paragraph(
+        doc,
+        "Project Report submitted in partial fulfillment of the requirements for the award of Bachelor Degree in Tourism Studies.",
+    )
+    add_docx_paragraph(doc, "Year: 2026")
+    doc.add_page_break()
+
+
+def add_docx_declaration(doc: Document):
+    add_docx_heading(doc, "DECLARATION")
+    declaration = """
+    I hereby declare that this project report is my original work and has not been submitted,
+    either in full or in part, to any other institution or university for any academic award.
+    All sources used in this report have been acknowledged appropriately.
+
+    Signature of Candidate: ____________________
+    Name: ____________________
+    Date: ____________________
+    """
+    for p in para_list(declaration):
+        add_docx_paragraph(doc, p)
+    doc.add_page_break()
+
+
+def add_docx_certificate(doc: Document):
+    add_docx_heading(doc, "CERTIFICATE BY SUPERVISOR")
+    certificate = """
+    Certified that the Project Report entitled ____________________ submitted by
+    ____________________ is his/her own work and has been completed under my supervision.
+    It is recommended that this project be placed before the examiner for evaluation.
+
+    Signature of Supervisor: ____________________
+    Name: ____________________
+    Study Centre: ____________________
+    Regional Centre: ____________________
+    Date: ____________________
+    """
+    for p in para_list(certificate):
+        add_docx_paragraph(doc, p)
+    doc.add_page_break()
+
+
+def add_docx_acknowledgement(doc: Document):
+    add_docx_heading(doc, "ACKNOWLEDGEMENT")
+    ack = """
+    I sincerely thank my project supervisor for valuable guidance, feedback, and motivation throughout
+    this study. I am grateful to the monastic representatives, local residents, service providers, and
+    visitors who shared their time and views during field interactions. Their cooperation made this work
+    meaningful and grounded in practical realities.
+
+    I also acknowledge the academic support provided through IGNOU study materials and project guidelines.
+    Any errors in interpretation remain my own responsibility.
+    """
+    for p in para_list(ack):
+        add_docx_paragraph(doc, p)
+    doc.add_page_break()
+
+
+def add_docx_table(doc: Document, rows: List[List[str]], title: str):
+    add_docx_heading(doc, title, level=2)
+    table = doc.add_table(rows=len(rows), cols=len(rows[0]))
+    table.style = "Table Grid"
+    for r_idx, row in enumerate(rows):
+        for c_idx, cell_text in enumerate(row):
+            cell = table.cell(r_idx, c_idx)
+            cell.text = cell_text
+            for p in cell.paragraphs:
+                for run in p.runs:
+                    run.font.name = "Times New Roman"
+                    run.font.size = Pt(10)
+                    run.bold = r_idx == 0
+    doc.add_paragraph()
+
+
+def build_report_docx(
+    output_path: str,
+    report_title: str,
+    course_code: str,
+    sections: List[Tuple[str, str]],
+    summary_table: List[List[str]],
+) -> int:
+    doc = Document()
+    configure_docx_defaults(doc)
+
+    add_docx_cover(doc, report_title, course_code)
+    add_docx_declaration(doc)
+    add_docx_certificate(doc)
+    add_docx_acknowledgement(doc)
+
+    add_docx_heading(doc, "TABLE OF CONTENTS (Indicative)")
+    toc_lines = [name for name, _ in sections]
+    for idx, item in enumerate(toc_lines, start=1):
+        add_docx_paragraph(doc, f"{idx}. {item}")
+    doc.add_page_break()
+
+    joined = []
+    for name, body in sections:
+        add_docx_heading(doc, name)
+        for p in para_list(body):
+            add_docx_paragraph(doc, p)
+            joined.append(p)
+        if "DATA ANALYSIS" in name or "STRATEGIC DESIGN" in name:
+            add_docx_table(doc, summary_table, "Summary Analytical Table")
+
+    doc.save(output_path)
+    return words("\n\n".join(joined))
+
+
 def build_report_pdf(
     output_path: str,
     report_title: str,
@@ -1146,6 +1308,8 @@ def main():
 
     pts1_pdf = os.path.join(out_dir, "PTS-1_Salugara_Monastery_Project.pdf")
     pts2_pdf = os.path.join(out_dir, "PTS-2_Buddhist_Circuit_Marketing_Project.pdf")
+    pts1_docx = os.path.join(out_dir, "PTS-1_Salugara_Monastery_Project.docx")
+    pts2_docx = os.path.join(out_dir, "PTS-2_Buddhist_Circuit_Marketing_Project.docx")
 
     pts1_words = build_report_pdf(
         output_path=pts1_pdf,
@@ -1161,20 +1325,42 @@ def main():
         sections=pts2_sections,
         summary_table=pts2_table,
     )
+    pts1_docx_words = build_report_docx(
+        output_path=pts1_docx,
+        report_title=pts1_title,
+        course_code="PTS-1",
+        sections=pts1_sections,
+        summary_table=pts1_table,
+    )
+    pts2_docx_words = build_report_docx(
+        output_path=pts2_docx,
+        report_title=pts2_title,
+        course_code="PTS-2",
+        sections=pts2_sections,
+        summary_table=pts2_table,
+    )
 
     meta_path = os.path.join(out_dir, "PROJECT_GENERATION_SUMMARY.txt")
     with open(meta_path, "w", encoding="utf-8") as f:
         f.write(f"Generated on: {dt.datetime.now().isoformat()}\n")
         f.write(f"PTS-1 PDF: {pts1_pdf}\n")
         f.write(f"PTS-2 PDF: {pts2_pdf}\n")
+        f.write(f"PTS-1 DOCX: {pts1_docx}\n")
+        f.write(f"PTS-2 DOCX: {pts2_docx}\n")
         f.write(f"Estimated PTS-1 word count: {pts1_words}\n")
         f.write(f"Estimated PTS-2 word count: {pts2_words}\n")
+        f.write(f"Estimated PTS-1 DOCX word count: {pts1_docx_words}\n")
+        f.write(f"Estimated PTS-2 DOCX word count: {pts2_docx_words}\n")
         f.write("Note: Candidate details and supervisor details should be filled before final submission.\n")
 
     print(f"Generated: {pts1_pdf}")
     print(f"Generated: {pts2_pdf}")
+    print(f"Generated: {pts1_docx}")
+    print(f"Generated: {pts2_docx}")
     print(f"PTS-1 words (estimate): {pts1_words}")
     print(f"PTS-2 words (estimate): {pts2_words}")
+    print(f"PTS-1 DOCX words (estimate): {pts1_docx_words}")
+    print(f"PTS-2 DOCX words (estimate): {pts2_docx_words}")
     print(f"Summary: {meta_path}")
 
 

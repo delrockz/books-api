@@ -1,6 +1,10 @@
-Generated on: 2026-04-09T08:02:27.399781
+Generated on: 2026-05-13T17:25:39.855115
 PTS-1 PDF: /workspace/deliverables/PTS-1_Salugara_Monastery_Project.pdf
 PTS-2 PDF: /workspace/deliverables/PTS-2_Buddhist_Circuit_Marketing_Project.pdf
+PTS-1 DOCX: /workspace/deliverables/PTS-1_Salugara_Monastery_Project.docx
+PTS-2 DOCX: /workspace/deliverables/PTS-2_Buddhist_Circuit_Marketing_Project.docx
 Estimated PTS-1 word count: 9241
 Estimated PTS-2 word count: 4294
+Estimated PTS-1 DOCX word count: 9241
+Estimated PTS-2 DOCX word count: 4294
 Note: Candidate details and supervisor details should be filled before final submission.
