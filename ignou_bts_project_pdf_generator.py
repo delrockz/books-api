@@ -565,35 +565,110 @@ def build_pts1_content() -> Tuple[str, List[Tuple[str, str]], List[List[str]]]:
     """
 
     annexure_a = """
-    Annexure A: Survey Questionnaire (Visitor)
-    Section 1: Profile (age group, state/country, visit type, travel companion)
-    Section 2: Motivation (religious, cultural, peace, architecture, transit stop)
-    Section 3: Site Experience (cleanliness, signage, behaviour guidance, safety, ambience)
-    Section 4: Expenditure (food, transport, local purchases, accommodation)
-    Section 5: Improvement Priorities (interpretation, toilets, parking, digital information, guides)
-    Section 6: Open Comment (what should be preserved at any cost)
+    Annexure A: Visitor Questionnaire - Blank Field Format (PTS-1)
 
-    Annexure B: Interview Guide (Monastic/Management Stakeholders)
-    - Perceived changes in visitor profile over time
-    - Boundaries between spiritual function and tourism function
-    - Festival management and crowd behaviour
-    - Interpretation opportunities and concerns
-    - Partnerships desired with local authorities and tourism bodies
+    A1. Respondent Background
+    1. Date of visit: ____________________
+    2. Place of interaction: ____________________
+    3. Age group: 18-25 / 26-35 / 36-45 / 46-60 / 60+
+    4. Gender (optional): ____________________
+    5. Place of origin (state/country): ____________________
+    6. Visit type: First visit / Repeat visit
+    7. Travel mode: Solo / Family / Friends / Group / Pilgrimage group
 
-    Annexure C: Interview Guide (Local Businesses and Residents)
-    - Seasonal demand pattern
-    - Price sensitivity and spending behaviour
-    - Infrastructure bottlenecks
-    - Tourism benefits and social concerns
-    - Suggestions for balanced development
+    A2. Purpose and Motivation
+    1. Primary reason for visit:
+       Religious devotion / Cultural interest / Peace and meditation / Architecture curiosity / Transit stop
+    2. Secondary reason (if any): ____________________
+    3. Did you know about nearby Buddhist monasteries before this visit?
+       Yes / No / Not sure
 
-    Annexure D: Observation Checklist
-    - Access roads and directional signage
-    - Entry experience and orientation support
-    - Site cleanliness and waste handling
-    - Visitor etiquette compliance
-    - Cultural information visibility
-    - Nearby service support
+    A3. Experience Assessment (Rate 1-5)
+    1. Site cleanliness: ____
+    2. Signage and route clarity: ____
+    3. Guidance on visitor behaviour: ____
+    4. Overall peace and spiritual ambience: ____
+    5. Cultural information availability: ____
+
+    A4. Expenditure and Stay Pattern
+    1. Approximate local spend (food/transport/retail): ____________________
+    2. Time spent at site: Less than 30 min / 30-60 min / 1-2 hrs / More than 2 hrs
+    3. Would you include this site in a wider monastery circuit?
+       Yes / No / Maybe
+
+    A5. Improvement Inputs
+    1. Most needed improvement at this site: ____________________
+    2. What should be preserved at any cost? ____________________
+    3. Any additional comment: ____________________
+
+    Annexure B: Interview Schedule - Monastic/Management Stakeholders (Blank Format)
+
+    B1. Respondent Details
+    1. Name/role (optional): ____________________
+    2. Institution/department: ____________________
+    3. Date of interview: ____________________
+    4. Place of interview: ____________________
+
+    B2. Core Interview Prompts
+    1. How has visitor profile changed in recent years?
+    2. How does the monastery balance sacred function and tourism function?
+    3. Which visitor behaviours create concern during peak periods?
+    4. What interpretation support is currently available for first-time visitors?
+    5. Which infrastructure gaps most affect visitor experience?
+    6. How can local stakeholders support respectful tourism growth?
+    7. What are key priorities for future planning?
+
+    B3. Interview Notes
+    - Key statement(s): ____________________
+    - Researcher interpretation note: ____________________
+
+    Annexure C: Interview Schedule - Local Businesses and Residents (Blank Format)
+
+    C1. Respondent Details
+    1. Name/role (optional): ____________________
+    2. Business/community type: ____________________
+    3. Location: ____________________
+    4. Date of interaction: ____________________
+
+    C2. Discussion Prompts
+    1. What seasonal demand patterns are observed around monastery tourism?
+    2. Which spending categories are most common among visitors?
+    3. What service/infrastructure bottlenecks are frequently noticed?
+    4. What benefits does the community receive from visitor flow?
+    5. What social or environmental concerns are seen locally?
+    6. What practical suggestions can improve balanced development?
+
+    C3. Notes
+    - Summary of response: ____________________
+    - Actionable insight: ____________________
+
+    Annexure D: Structured Observation Checklist (Blank Format)
+
+    D1. Site Access and Arrival
+    - Directional signage available and readable: Yes / No / Partly
+    - Last-mile approach condition: Good / Average / Poor
+    - Arrival guidance for first-time visitors: Good / Average / Poor
+
+    D2. On-site Visitor Environment
+    - Cleanliness status: Good / Average / Poor
+    - Waste handling visibility: Good / Average / Poor
+    - Seating/rest support: Adequate / Limited / Not available
+    - Behaviour guidance display: Clear / Partial / Absent
+
+    D3. Cultural Interpretation
+    - Basic heritage information visible: Yes / No / Partly
+    - Multilingual support available: Yes / No / Partly
+    - Respectful photo/ritual guidance present: Yes / No / Partly
+
+    D4. Nearby Support Ecosystem
+    - Transport support adequacy: Good / Average / Poor
+    - Food/retail support quality: Good / Average / Poor
+    - Overall visitor confidence impression: High / Medium / Low
+
+    D5. Field Note Closure
+    - Date and time of observation: ____________________
+    - Peak/lean crowd condition: ____________________
+    - Most urgent improvement priority: ____________________
     """
 
     synthetic_table = [
