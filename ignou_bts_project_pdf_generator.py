@@ -968,11 +968,136 @@ def build_pts2_content() -> Tuple[str, List[Tuple[str, str]], List[List[str]]]:
     """
 
     annexures = """
-    Annexure A: Tourist Survey Instrument (Marketing Focus)
-    Annexure B: Stakeholder Interview Schedule (Travel Trade and Local Service Providers)
-    Annexure C: Digital Audit Checklist (Search, Maps, Social, Content Quality)
-    Annexure D: Sample One-Month Content Calendar
-    Annexure E: Proposed KPI Dashboard Template
+    Annexure A: Tourist Survey Instrument (Marketing Focus) - Blank Format
+
+    A1. Respondent Profile
+    1. Date of interaction: ____________________
+    2. Place of interaction: ____________________
+    3. Age group: 18-25 / 26-35 / 36-45 / 46-60 / 60+
+    4. Gender (optional): ____________________
+    5. Place of origin: ____________________
+    6. Visit type: First visit / Repeat visit
+    7. Travel type: Solo / Family / Friends / Group / Pilgrimage group
+
+    A2. Awareness and Discovery
+    1. How did you hear about this monastery / route?
+       Social media / Search engine / Friend or relative / Tour operator / En route discovery / Other
+    2. Before this trip, were you aware of a Buddhist trail in the Siliguri region?
+       Yes / No / Not sure
+    3. Which nearby monasteries or sites do you know?
+       ____________________
+
+    A3. Experience and Marketing Communication
+    1. Rate clarity of available information before visit (1 very poor - 5 excellent): ____
+    2. Rate signage and wayfinding at destination (1-5): ____
+    3. Rate overall atmosphere and visitor comfort (1-5): ____
+    4. Was respectful visitor guidance visible and helpful?
+       Yes / No / Partly
+    5. Would you recommend this destination to others?
+       Yes / No / Maybe
+
+    A4. Intention and Suggestions
+    1. Would you choose a curated half-day/full-day Buddhist circuit if available?
+       Yes / No / Maybe
+    2. Preferred communication language(s): ____________________
+    3. What one improvement would increase your satisfaction?
+       ____________________
+
+    Annexure B: Stakeholder Interview Schedule - Blank Format
+    (For tour operators, hotel/travel desk staff, transport providers, local businesses, facilitators)
+
+    B1. Respondent details
+    1. Name/role (optional): ____________________
+    2. Organization/business type: ____________________
+    3. Location: ____________________
+    4. Years of experience: ____________________
+
+    B2. Thematic prompts
+    1. How is demand for Buddhist-site visitation changing in recent years?
+    2. Which customer segments ask for monastery-related visits?
+    3. What are the biggest barriers in packaging this as a circuit product?
+    4. Which channels currently work best for inquiries and conversions?
+    5. What information do visitors usually ask for but fail to find?
+    6. What partnerships are needed for better marketing coordination?
+    7. How can promotion remain respectful to sacred norms?
+    8. What quick interventions could improve conversion and visitor quality?
+
+    B3. Closing notes
+    - Key quote(s): ____________________
+    - Researcher observation: ____________________
+
+    Annexure C: Digital Audit Checklist - Blank Format
+    (For site-level communication quality review)
+
+    C1. Search and discoverability
+    - Destination appears on first page for relevant queries: Yes / No / Partly
+    - Correct location metadata available: Yes / No
+    - Opening hours/contact clarity: Yes / No / Partly
+
+    C2. Maps and listing quality
+    - Map pin accuracy: Good / Average / Poor
+    - Category labels and naming consistency: Good / Average / Poor
+    - Basic photos and description quality: Good / Average / Poor
+
+    C3. Social and content quality
+    - Consistency of message across channels: High / Medium / Low
+    - Use of respectful visitor guidance in content: Yes / No
+    - Festival/event communication clarity: High / Medium / Low
+    - Multilingual communication presence: High / Medium / Low
+
+    C4. Overall audit score template
+    - Discoverability score (out of 10): ____
+    - Conversion-readiness score (out of 10): ____
+    - Responsible messaging score (out of 10): ____
+    - Priority fixes (top 3): ____________________
+
+    Annexure D: One-Month Content Calendar - Editable Template
+
+    Week 1:
+    - Post 1 (Awareness): ____________________
+    - Post 2 (Etiquette / Respectful visit): ____________________
+    - Post 3 (Route clarity / how to reach): ____________________
+
+    Week 2:
+    - Post 1 (Sacred story / heritage context): ____________________
+    - Post 2 (Nearby monastery connector): ____________________
+    - Post 3 (Visitor FAQ): ____________________
+
+    Week 3:
+    - Post 1 (Local voice/community angle): ____________________
+    - Post 2 (Festival/event information): ____________________
+    - Post 3 (Responsible travel reminder): ____________________
+
+    Week 4:
+    - Post 1 (Itinerary suggestion): ____________________
+    - Post 2 (User-generated testimonial curation): ____________________
+    - Post 3 (Next-month teaser): ____________________
+
+    Metrics to track each week: Reach / Engagement / Inquiry / Itinerary click / Sentiment note
+
+    Annexure E: KPI Dashboard Template - Blank Format
+
+    E1. Awareness KPIs
+    - Branded search volume: Baseline ____ ; Current ____ ; Change ____
+    - Social reach: Baseline ____ ; Current ____ ; Change ____
+
+    E2. Conversion KPIs
+    - Route-map or itinerary clicks: Baseline ____ ; Current ____ ; Change ____
+    - Tour inquiries mentioning Buddhist circuit: Baseline ____ ; Current ____ ; Change ____
+
+    E3. Experience KPIs
+    - Visitor satisfaction average (1-5): Baseline ____ ; Current ____ ; Change ____
+    - Information clarity rating (1-5): Baseline ____ ; Current ____ ; Change ____
+
+    E4. Responsible Tourism KPIs
+    - Reported etiquette non-compliance incidents: Baseline ____ ; Current ____ ; Change ____
+    - Litter or unmanaged crowding observations: Baseline ____ ; Current ____ ; Change ____
+
+    E5. Review block
+    - Month reviewed: ____________________
+    - Key wins: ____________________
+    - Key bottlenecks: ____________________
+    - Actions for next cycle: ____________________
     """
 
     synthetic_table = [
