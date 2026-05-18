@@ -32,9 +32,15 @@ from reportlab.platypus import (
 
 
 def normalize_text(text: str) -> str:
-    """Collapse extra whitespace while preserving paragraph breaks."""
-    parts = [re.sub(r"[ \t]+", " ", p.strip()) for p in text.strip().split("\n\n")]
-    return "\n\n".join([p for p in parts if p])
+    """Collapse soft wraps while preserving paragraph breaks."""
+    blocks = re.split(r"\n\s*\n", text.strip())
+    parts = []
+    for block in blocks:
+        # Join wrapped source lines inside a paragraph into a single flowing line.
+        compact = re.sub(r"\s+", " ", block.strip())
+        if compact:
+            parts.append(compact)
+    return "\n\n".join(parts)
 
 
 def words(text: str) -> int:
