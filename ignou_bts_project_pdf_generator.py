@@ -10,7 +10,7 @@ import datetime as dt
 import os
 import re
 import textwrap
-from typing import List, Sequence, Tuple
+from typing import List, Optional, Sequence, Tuple
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -21,6 +21,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
 from reportlab.platypus import (
+    Image as RLImage,
     PageBreak,
     Paragraph,
     SimpleDocTemplate,
@@ -994,6 +995,256 @@ def build_pts2_content() -> Tuple[str, List[Tuple[str, str]], List[List[str]]]:
     return title, sections, synthetic_table
 
 
+def build_pts1_synopsis_content() -> Tuple[str, str]:
+    title = "Role of Salugara Monastery in Promoting Buddhist Cultural Tourism in Siliguri Region"
+    synopsis = """
+    Background and Rationale:
+    Salugara Monastery in the Siliguri region is a living Buddhist institution with strong spiritual value and
+    visible tourism relevance. The site attracts pilgrims, culture-oriented visitors, and transit tourists moving
+    towards Darjeeling, Kalimpong, and Sikkim corridors. Despite this importance, there is limited structured
+    local documentation on how the monastery contributes to Buddhist cultural tourism, visitor learning, and local
+    livelihood support. The proposed project addresses this gap through field-based case study research.
+
+    Aim and Objectives:
+    The aim is to evaluate the role of Salugara Monastery in promoting Buddhist cultural tourism in the Siliguri
+    region and to propose practical recommendations for responsible growth. The key objectives are: (1) to profile
+    visitor motivation, behaviour, and flow patterns; (2) to document cultural and ritual heritage interpretation at
+    the site; (3) to assess local economic linkages around transport, food, retail, and short-stay demand; (4) to
+    identify constraints related to signage, interpretation, amenities, and management coordination; and (5) to
+    suggest a sustainable and culturally respectful development model.
+
+    Methodology and Data:
+    The study will use a mixed-method design with primary and secondary data. Primary data will be collected through
+    visitor questionnaires, semi-structured interviews with monastic representatives and local stakeholders, and
+    direct field observation. Secondary material will include tourism policy documents, IGNOU study resources, and
+    published tourism statistics. Data will be classified into themes such as cultural value, visitor experience,
+    local benefits, and sustainability risks. Basic percentage analysis and thematic interpretation will be used.
+
+    Scope, Work Plan, and Expected Outcome:
+    The study area will focus on Salugara and selective comparative references to nearby monasteries where relevant.
+    Work will proceed in four stages: topic finalization and tool design; field data collection; analysis and chapter
+    drafting; and final report writing with bibliography and annexures. The expected outcome is a grounded case study
+    showing how sacred authenticity, interpretation quality, and community participation can together improve Buddhist
+    cultural tourism without compromising monastic dignity. The report will provide practical suggestions for student
+    research, local stakeholders, and destination planning discussions.
+    """
+    return title, synopsis
+
+
+def build_pts2_synopsis_content() -> Tuple[str, str]:
+    title = "Marketing Strategies for Buddhist Circuit Tourism in Siliguri: A Study of Salugara and Nearby Monasteries"
+    synopsis = """
+    Background and Problem Statement:
+    Siliguri has strong potential to function as a Buddhist cultural tourism gateway because of its connectivity and
+    proximity to important monastery sites. However, promotion of Salugara and nearby monasteries remains fragmented.
+    Many visits are incidental rather than itinerary-driven, and there is limited integrated branding, digital
+    discoverability, and travel-trade packaging. The proposed PTS-2 study examines this marketing gap and develops a
+    practical strategy suitable for sacred-cultural destinations.
+
+    Aim and Objectives:
+    The aim is to design workable marketing strategies for Buddhist circuit tourism in Siliguri with focus on
+    Salugara and nearby monasteries. The objectives are: (1) to assess current destination positioning and market
+    visibility; (2) to identify high-potential visitor segments and their expectations; (3) to evaluate existing
+    promotion channels, digital presence, and stakeholder coordination; (4) to apply STP and services marketing
+    concepts for strategy design; and (5) to recommend a phased action framework with measurable indicators.
+
+    Methodology and Data Sources:
+    The study will adopt a mixed-method marketing audit approach. Primary data will include tourist surveys, local
+    stakeholder interactions, and semi-structured interviews with tourism-related actors. A structured digital audit
+    will review search discoverability, map listing consistency, social media clarity, and itinerary communication.
+    Secondary data will include policy references on Buddhist circuit development and relevant tourism statistics.
+    Analysis will use percentage interpretation, SWOT framing, and STP logic for actionable recommendations.
+
+    Scope, Deliverables, and Work Plan:
+    The geographic scope will be Siliguri and nearby monastery nodes linked to practical circuit development. The
+    study will not examine internal religious administration and will remain focused on tourism marketing dimensions.
+    The work plan covers tool preparation, field data collection, channel audit, analysis, and final report drafting.
+    Expected deliverables include segment-specific strategy suggestions, responsible promotion guidelines, partnership
+    pathways, and a KPI-based monitoring framework. The final report is expected to support educational evaluation as
+    well as practical discussion on culturally sensitive destination marketing.
+    """
+    return title, synopsis
+
+
+def build_synopsis_pdf(
+    output_path: str,
+    title: str,
+    course_code: str,
+    synopsis_text: str,
+    logo_path: Optional[str] = None,
+) -> int:
+    styles = get_styles()
+    left_body = ParagraphStyle(
+        "left_body",
+        parent=styles["body"],
+        alignment=TA_LEFT,
+    )
+
+    story = []
+    if logo_path and os.path.exists(logo_path):
+        img = RLImage(logo_path, width=2.6 * cm, height=2.6 * cm)
+        img.hAlign = "CENTER"
+        story.append(img)
+        story.append(Spacer(1, 8))
+
+    story.append(Paragraph("PROJECT PROPOSAL PROFORMA (ANNEXURE A)", styles["title"]))
+    story.append(Paragraph("INDIRA GANDHI NATIONAL OPEN UNIVERSITY", styles["subtitle"]))
+    story.append(Paragraph("B.A. TOURISM STUDIES (BTS)", styles["subtitle"]))
+    story.append(Spacer(1, 8))
+    story.append(Paragraph("Candidate Information (to be filled by the candidate)", styles["h2"]))
+
+    candidate_fields = [
+        "Date: ____________________",
+        "Name: ____________________",
+        f"Programme Code: BTS    Course Code: {course_code}",
+        "Enrolment No.: ____________________",
+        "Address: ____________________",
+        "Regional Centre: ____________________",
+        "Study Centre Name and Code: ____________________",
+    ]
+    for field in candidate_fields:
+        story.append(Paragraph(field, left_body))
+
+    story.append(Spacer(1, 8))
+    story.append(Paragraph("Title of the Project", styles["h2"]))
+    story.append(Paragraph(title, left_body))
+    story.append(Spacer(1, 8))
+    story.append(Paragraph("Synopsis / Proposal (about 400 words)", styles["h2"]))
+    for p in para_list(synopsis_text):
+        story.append(Paragraph(textwrap.fill(p, width=175), styles["body"]))
+
+    story.append(Spacer(1, 10))
+    story.append(Paragraph("LETTER/CERTIFICATE OF APPROVAL (By the Supervisor)", styles["h2"]))
+    approval = """
+    I hereby certify that the proposal for the Project entitled ____________________ by
+    ____________________ has been prepared after due consultation with me. The proposal has my approval
+    and has, to my knowledge, the potential of developing into a comprehensive Project Work.
+    I also agree to supervise the above mentioned Project till its completion.
+
+    Signature of the Supervisor: ____________________
+    Name: ____________________
+    Designation: ____________________
+    Address: ____________________
+    """
+    for p in para_list(approval):
+        story.append(Paragraph(p, left_body))
+
+    story.append(Spacer(1, 8))
+    story.append(
+        Paragraph(
+            "Checklist: Keep one copy with yourself. Submit one signed proposal copy to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU.",
+            styles["small"],
+        )
+    )
+
+    doc = SimpleDocTemplate(
+        output_path,
+        pagesize=A4,
+        rightMargin=2.2 * cm,
+        leftMargin=2.2 * cm,
+        topMargin=2.0 * cm,
+        bottomMargin=2.0 * cm,
+        title=f"{course_code} Project Proposal",
+        author="IGNOU BTS Candidate",
+    )
+    doc.build(story)
+    return words(synopsis_text)
+
+
+def build_synopsis_docx(
+    output_path: str,
+    title: str,
+    course_code: str,
+    synopsis_text: str,
+    logo_path: Optional[str] = None,
+) -> int:
+    doc = Document()
+    configure_docx_defaults(doc)
+
+    if logo_path and os.path.exists(logo_path):
+        doc.add_picture(logo_path, width=Cm(2.6))
+        doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    add_docx_paragraph(doc, "PROJECT PROPOSAL PROFORMA (ANNEXURE A)", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=16)
+    add_docx_paragraph(doc, "INDIRA GANDHI NATIONAL OPEN UNIVERSITY", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=14)
+    add_docx_paragraph(doc, "B.A. TOURISM STUDIES (BTS)", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=13)
+    add_docx_heading(doc, "Candidate Information (to be filled by the candidate)")
+
+    candidate_fields = [
+        "Date: ____________________",
+        "Name: ____________________",
+        f"Programme Code: BTS    Course Code: {course_code}",
+        "Enrolment No.: ____________________",
+        "Address: ____________________",
+        "Regional Centre: ____________________",
+        "Study Centre Name and Code: ____________________",
+    ]
+    for field in candidate_fields:
+        add_docx_paragraph(doc, field, align=WD_ALIGN_PARAGRAPH.LEFT)
+
+    add_docx_heading(doc, "Title of the Project")
+    add_docx_paragraph(doc, title, align=WD_ALIGN_PARAGRAPH.LEFT)
+    add_docx_heading(doc, "Synopsis / Proposal (about 400 words)")
+    for p in para_list(synopsis_text):
+        add_docx_paragraph(doc, p)
+
+    add_docx_heading(doc, "LETTER/CERTIFICATE OF APPROVAL (By the Supervisor)")
+    approval = """
+    I hereby certify that the proposal for the Project entitled ____________________ by
+    ____________________ has been prepared after due consultation with me. The proposal has my approval
+    and has, to my knowledge, the potential of developing into a comprehensive Project Work.
+    I also agree to supervise the above mentioned Project till its completion.
+
+    Signature of the Supervisor: ____________________
+    Name: ____________________
+    Designation: ____________________
+    Address: ____________________
+    """
+    for p in para_list(approval):
+        add_docx_paragraph(doc, p, align=WD_ALIGN_PARAGRAPH.LEFT)
+
+    add_docx_paragraph(
+        doc,
+        "Checklist: Keep one copy with yourself. Submit one signed proposal copy to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU.",
+        align=WD_ALIGN_PARAGRAPH.LEFT,
+    )
+    doc.save(output_path)
+    return words(synopsis_text)
+
+
+def write_submission_workflow(path: str):
+    content = """# IGNOU BTS PTS-1 / PTS-2 Submission Workflow (From Project Guide)
+
+1. **Select topic** under approved PTS-1 and PTS-2 themes.
+2. **Prepare synopsis/project proposal** (about 400 words) using Annexure A format.
+3. **Get supervisor approval signature** on proposal proforma.
+4. **Send proposal copy** to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU; keep one copy.
+5. **Do not change topic wording** after proposal submission.
+6. **Start fieldwork and report writing** (guide states supervisor approval is final; do not wait for IGNOU approval letter).
+7. **Prepare final report** with:
+   - First page format (Annexure B style)
+   - Candidate declaration
+   - Supervisor certificate (Annexure C)
+   - Chapters, bibliography, annexures (questionnaire/interview schedule, etc.)
+8. **Submit project report copies** as per current IGNOU/Regional Centre instructions.
+9. **Track evaluation and complete viva/other requirements** if applicable in your current session.
+
+## What this generator now produces
+- PTS-1 and PTS-2 full reports in PDF + DOCX
+- PTS-1 and PTS-2 synopsis/proposal in PDF + DOCX
+- Generation summary file with paths and word counts
+
+## Manual finalization before submission
+- Fill candidate details (name, enrolment no., study centre, regional centre)
+- Fill supervisor details/signatures and dates
+- Print and sign where required
+- Add official logo only if your centre expects/permits it
+- Verify latest submission mode/date from your Regional Centre notice
+"""
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
 def add_cover(story, styles, report_title: str, course_code: str):
     story.append(Paragraph("INDIRA GANDHI NATIONAL OPEN UNIVERSITY", styles["subtitle"]))
     story.append(Paragraph("B.A. TOURISM STUDIES (BTS)", styles["subtitle"]))
@@ -1302,14 +1553,22 @@ def build_report_pdf(
 def main():
     out_dir = os.path.join(os.getcwd(), "deliverables")
     os.makedirs(out_dir, exist_ok=True)
+    logo_path = os.environ.get("IGNOU_LOGO_PATH", "").strip() or None
 
     pts1_title, pts1_sections, pts1_table = build_pts1_content()
     pts2_title, pts2_sections, pts2_table = build_pts2_content()
+    pts1_synopsis_title, pts1_synopsis = build_pts1_synopsis_content()
+    pts2_synopsis_title, pts2_synopsis = build_pts2_synopsis_content()
 
     pts1_pdf = os.path.join(out_dir, "PTS-1_Salugara_Monastery_Project.pdf")
     pts2_pdf = os.path.join(out_dir, "PTS-2_Buddhist_Circuit_Marketing_Project.pdf")
     pts1_docx = os.path.join(out_dir, "PTS-1_Salugara_Monastery_Project.docx")
     pts2_docx = os.path.join(out_dir, "PTS-2_Buddhist_Circuit_Marketing_Project.docx")
+    pts1_synopsis_pdf = os.path.join(out_dir, "PTS-1_Project_Proposal_Synopsis.pdf")
+    pts2_synopsis_pdf = os.path.join(out_dir, "PTS-2_Project_Proposal_Synopsis.pdf")
+    pts1_synopsis_docx = os.path.join(out_dir, "PTS-1_Project_Proposal_Synopsis.docx")
+    pts2_synopsis_docx = os.path.join(out_dir, "PTS-2_Project_Proposal_Synopsis.docx")
+    workflow_path = os.path.join(out_dir, "BTS_Submission_Workflow_Checklist.md")
 
     pts1_words = build_report_pdf(
         output_path=pts1_pdf,
@@ -1339,28 +1598,74 @@ def main():
         sections=pts2_sections,
         summary_table=pts2_table,
     )
+    pts1_synopsis_pdf_words = build_synopsis_pdf(
+        output_path=pts1_synopsis_pdf,
+        title=pts1_synopsis_title,
+        course_code="PTS-1",
+        synopsis_text=pts1_synopsis,
+        logo_path=logo_path,
+    )
+    pts2_synopsis_pdf_words = build_synopsis_pdf(
+        output_path=pts2_synopsis_pdf,
+        title=pts2_synopsis_title,
+        course_code="PTS-2",
+        synopsis_text=pts2_synopsis,
+        logo_path=logo_path,
+    )
+    pts1_synopsis_docx_words = build_synopsis_docx(
+        output_path=pts1_synopsis_docx,
+        title=pts1_synopsis_title,
+        course_code="PTS-1",
+        synopsis_text=pts1_synopsis,
+        logo_path=logo_path,
+    )
+    pts2_synopsis_docx_words = build_synopsis_docx(
+        output_path=pts2_synopsis_docx,
+        title=pts2_synopsis_title,
+        course_code="PTS-2",
+        synopsis_text=pts2_synopsis,
+        logo_path=logo_path,
+    )
+    write_submission_workflow(workflow_path)
 
     meta_path = os.path.join(out_dir, "PROJECT_GENERATION_SUMMARY.txt")
     with open(meta_path, "w", encoding="utf-8") as f:
         f.write(f"Generated on: {dt.datetime.now().isoformat()}\n")
+        f.write(f"Logo path used: {logo_path if logo_path else 'None'}\n")
         f.write(f"PTS-1 PDF: {pts1_pdf}\n")
         f.write(f"PTS-2 PDF: {pts2_pdf}\n")
         f.write(f"PTS-1 DOCX: {pts1_docx}\n")
         f.write(f"PTS-2 DOCX: {pts2_docx}\n")
+        f.write(f"PTS-1 Synopsis PDF: {pts1_synopsis_pdf}\n")
+        f.write(f"PTS-2 Synopsis PDF: {pts2_synopsis_pdf}\n")
+        f.write(f"PTS-1 Synopsis DOCX: {pts1_synopsis_docx}\n")
+        f.write(f"PTS-2 Synopsis DOCX: {pts2_synopsis_docx}\n")
+        f.write(f"Workflow Checklist: {workflow_path}\n")
         f.write(f"Estimated PTS-1 word count: {pts1_words}\n")
         f.write(f"Estimated PTS-2 word count: {pts2_words}\n")
         f.write(f"Estimated PTS-1 DOCX word count: {pts1_docx_words}\n")
         f.write(f"Estimated PTS-2 DOCX word count: {pts2_docx_words}\n")
+        f.write(f"Estimated PTS-1 Synopsis PDF word count: {pts1_synopsis_pdf_words}\n")
+        f.write(f"Estimated PTS-2 Synopsis PDF word count: {pts2_synopsis_pdf_words}\n")
+        f.write(f"Estimated PTS-1 Synopsis DOCX word count: {pts1_synopsis_docx_words}\n")
+        f.write(f"Estimated PTS-2 Synopsis DOCX word count: {pts2_synopsis_docx_words}\n")
         f.write("Note: Candidate details and supervisor details should be filled before final submission.\n")
 
     print(f"Generated: {pts1_pdf}")
     print(f"Generated: {pts2_pdf}")
     print(f"Generated: {pts1_docx}")
     print(f"Generated: {pts2_docx}")
+    print(f"Generated: {pts1_synopsis_pdf}")
+    print(f"Generated: {pts2_synopsis_pdf}")
+    print(f"Generated: {pts1_synopsis_docx}")
+    print(f"Generated: {pts2_synopsis_docx}")
+    print(f"Generated: {workflow_path}")
     print(f"PTS-1 words (estimate): {pts1_words}")
     print(f"PTS-2 words (estimate): {pts2_words}")
     print(f"PTS-1 DOCX words (estimate): {pts1_docx_words}")
     print(f"PTS-2 DOCX words (estimate): {pts2_docx_words}")
+    print(f"PTS-1 synopsis words (estimate): {pts1_synopsis_pdf_words}")
+    print(f"PTS-2 synopsis words (estimate): {pts2_synopsis_pdf_words}")
     print(f"Summary: {meta_path}")
 
 
