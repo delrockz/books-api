@@ -1275,6 +1275,45 @@ def build_pts1_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]
             discussions, and offer a replicable model for similar Buddhist cultural nodes in regional gateway settings.
             The analytical lens remains sacred-first, ensuring that tourism recommendations strengthen understanding and
             respect rather than commercialize ritual spaces.
+
+            The context is also socially important because Salugara is not simply a tourist viewing point; it is a
+            lived cultural institution for practicing communities. Any increase in visitor flow can influence everyday
+            site rhythms, prayer conditions, and neighborhood usage patterns. If tourism expansion is proposed without
+            contextual sensitivity, community resistance may rise and the very values attracting visitors may weaken.
+            For this reason, the study deliberately frames tourism not as volume maximization but as quality-centered
+            engagement where information clarity, visitor etiquette, and respectful movement are prioritized.
+
+            Another dimension of significance lies in educational value. A large segment of first-time visitors to
+            Buddhist monasteries are unfamiliar with symbolic vocabulary, ritual boundaries, and behavioural norms.
+            When interpretation is absent, the visitor experience often remains superficial and confusion-related
+            mistakes increase. The proposed work can help establish an interpretation logic suited to living sacred
+            spaces: concise, non-intrusive, multilingual, and culturally accurate. This is especially useful for
+            student-level tourism planning because it connects theory with practical communication design.
+
+            From an economic viewpoint, monastery-linked tourism in corridor regions generally supports micro-level
+            enterprise systems rather than large consolidated operators. Tea stalls, local transport, small retail,
+            and occasional local services may all benefit, but gains can remain uneven when visits are short and
+            fragmented. By studying spending tendencies and perceived local benefit channels, the project can identify
+            which low-investment measures might improve dwell time and local value capture while retaining sacred
+            character. This makes the study relevant for inclusive destination planning discussions.
+
+            Environmentally, the context is equally significant. Even moderate tourist growth can produce cumulative
+            pressure in compact approach zones through litter, noise, informal parking, and circulation congestion.
+            Such pressures are manageable only when responsibilities are clearly distributed among site stakeholders,
+            local civic agencies, and visitor-support services. The synopsis therefore positions sustainability as a
+            practical management question rather than an abstract policy slogan.
+
+            At a broader regional scale, the Siliguri setting offers potential for clustered Buddhist cultural
+            experiences. Yet cluster potential is meaningful only if each node is interpreted within its local
+            identity and carrying context. This study contributes by grounding recommendations in one specific case
+            instead of relying on generic destination templates. The expected output is not a one-size model but a
+            transferable method: document local realities, classify stakeholder priorities, and design phased actions
+            that preserve cultural dignity while improving visitor preparedness.
+
+            In summary, the Significance & Context of this proposal extends across six linked levels: cultural
+            preservation, visitor literacy, community acceptance, micro-economy linkage, environmental responsibility,
+            and evidence-based regional planning. This multi-layer relevance justifies the proposed two-page treatment
+            and supports the need for a structured, field-backed PTS-1 project in the present topic area.
             """,
             2,
         ),
@@ -1461,6 +1500,47 @@ def build_pts2_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]
             The study is therefore positioned at the intersection of strategy and cultural responsibility. It is
             expected to generate actionable insights for segment selection, channel design, local partnerships, and
             performance monitoring while protecting sacred identity.
+
+            The context is commercially significant as well because current visitor inflow appears to be partly
+            incidental rather than intentionally converted through structured communication. When destinations depend
+            heavily on incidental traffic, demand quality remains unstable and planning becomes reactive. A stronger
+            strategic framework can help move from accidental discovery toward informed visitation, improving both
+            visitor readiness and destination reputation.
+
+            Another reason this section deserves extended treatment is the changing digital behaviour of travelers.
+            Decision journeys increasingly begin before arrival through mobile search, map previews, user reviews, and
+            short-form creator content. If local Buddhist destinations are represented inconsistently online, potential
+            visitors may abandon intent or arrive without adequate cultural context. The proposal therefore treats
+            digital hygiene as a foundational marketing issue rather than a secondary promotional add-on.
+
+            Significance is also linked to segmentation efficiency. Without clear segment definition, communication
+            budgets and effort are diluted across audiences with different motivations and expectations. A spiritual
+            short-break traveler, a cultural learner, and an international Buddhist-interest visitor do not require
+            identical messaging. The study can therefore improve strategic precision by aligning segment priorities
+            with channel choices and content formats.
+
+            From a governance perspective, monastery-linked marketing requires multi-actor coordination that is often
+            missing in small and medium destinations. Travel intermediaries, local businesses, community stakeholders,
+            and site custodians may all hold partial information but no integrated action plan. This project's
+            significance lies in creating an evidence-based coordination map that can support phased implementation
+            without compromising institutional autonomy or sacred standards.
+
+            The context is additionally important for responsible tourism outcomes. Unbalanced promotion can increase
+            social media visibility but also trigger etiquette violations, crowding spikes, and cultural discomfort if
+            visitor orientation is weak. A structured Significance & Context analysis helps ensure that marketing
+            recommendations include behavioural guidance, not only visibility targets. In sacred destinations, this
+            distinction is critical for long-term credibility.
+
+            Economically, the study can contribute to better local benefit pathways by identifying where marketing
+            improvements can raise conversion into local services in a controlled and respectful manner. This includes
+            itinerary clarity, partnership with ethical service providers, and improved information interfaces at
+            transit nodes. Such interventions may improve local opportunity without pushing high-intensity tourism
+            models unsuitable for monastic environments.
+
+            In summary, the significance of this proposal spans destination brand coherence, digital trust, segment-wise
+            communication, partnership architecture, responsible visitor conduct, and local value capture. Because these
+            dimensions are interdependent, a two-page Significance & Context section is methodologically justified and
+            necessary for a robust PTS-2 synopsis.
             """,
             2,
         ),
