@@ -1246,34 +1246,35 @@ def build_pts1_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]
             where some visitors seek formal prayer engagement while others seek peace, quiet, and cultural learning.
             Existing work in religious tourism also indicates that first-time visitors benefit significantly from clear
             interpretation support, especially when local symbols and ritual etiquette are unfamiliar.
-
+            """,
+            1,
+        ),
+        (
+            "Significance & Context",
+            """
             Tourism planning literature on medium-scale gateway cities suggests that transit geography can create
-            under-recognized opportunities. Sites that are not primary endpoints can still become meaningful stops if
-            route readability, communication quality, and local partnerships are improved. In the Siliguri context,
-            this insight is relevant because many tourists are already in motion across regional circuits. A monastery
-            such as Salugara can therefore serve both as a destination and as a meaningful cultural pause-point.
+            under-recognized destination opportunities. Sites that are not primary endpoints can still become meaningful
+            stops if route readability, communication quality, and local partnerships are improved. In the Siliguri
+            context, this insight is highly relevant because large numbers of travelers already move across regional
+            circuits toward hill destinations. Salugara can therefore be studied as both a destination and a culturally
+            meaningful pause-point in broader visitor movement.
 
-            Sustainable tourism scholarship adds that local acceptance depends on perceived fairness of benefit
-            distribution and visible management of externalities. Around religious destinations, recurring challenges
-            include unstructured parking, litter pressure, unclear wayfinding, and etiquette non-compliance by
-            uninformed visitors. Studies suggest that small but consistent measures such as multilingual signage,
-            visitor orientation, and coordinated cleanliness routines can substantially improve experience quality.
+            Sustainable tourism scholarship adds that local acceptance depends on fairness of benefit distribution and
+            visible management of externalities. Around religious destinations, recurring challenges include unstructured
+            parking, litter pressure, unclear wayfinding, and etiquette non-compliance by uninformed visitors. Studies
+            consistently indicate that low-cost interventions such as multilingual signage, orientation support, and
+            coordinated cleanliness systems can significantly improve visitor experience quality.
 
-            Policy-level references from Government of India indicate continued attention toward Buddhist tourism
-            development through thematic circuit initiatives. While large circuit schemes often focus on major nodes,
-            local-level feeder destinations remain crucial to broadening access and dispersing visitor flow. This
-            creates a policy-practice gap where smaller cultural sites can benefit from locally tailored planning even
-            without large capital projects.
+            Policy references from Government of India show continuing interest in Buddhist tourism development through
+            thematic circuit initiatives. However, local feeder destinations often require site-specific planning support
+            to translate macro policy momentum into practical outcomes. This creates a strong context for a field study
+            that examines how a locally important monastery can align sacred integrity with responsible visitor access.
 
-            Research on community-linked tourism indicates that micro-economies around sacred destinations often grow
-            through transport services, food outlets, local retail, and short-duration purchases. However, these gains
-            remain fragmented when destinations lack coordinated packaging and interpretation. From a case-study
-            perspective, Salugara provides an opportunity to test how sacred integrity, visitor literacy, and local
-            economic linkages can be aligned through practical, low-cost interventions.
-
-            The literature therefore supports a multi-dimensional framework for the present synopsis: sacred
-            authenticity, visitor profile, interpretation quality, local livelihood linkage, governance coordination,
-            and environmental responsibility. This framework guides the proposed data tools and chapter-level analysis.
+            The proposed study is significant because it links culture, tourism behaviour, and local livelihood evidence
+            in one integrated framework. It can contribute to academic understanding, inform community-level destination
+            discussions, and offer a replicable model for similar Buddhist cultural nodes in regional gateway settings.
+            The analytical lens remains sacred-first, ensuring that tourism recommendations strengthen understanding and
+            respect rather than commercialize ritual spaces.
             """,
             2,
         ),
@@ -1429,32 +1430,37 @@ def build_pts2_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]
             critical in tourism experiences. For monastery destinations, front-facing behaviour, route guidance,
             interpretive clarity, and calm atmosphere influence visitor confidence as much as promotional campaigns do.
             This indicates that marketing strategy should include on-ground service design, not only media outreach.
+            """,
+            1,
+        ),
+        (
+            "Significance & Context",
+            """
+            Destination branding studies show that a strong tourism brand is built through coherent and repeated trust
+            cues. Fragmented messaging reduces conversion even when the destination product is valuable. In gateway
+            regions, cluster branding can improve recall by connecting nearby sites under a shared narrative. This is
+            directly relevant to Siliguri, where Salugara and nearby monasteries can be presented as a linked Buddhist
+            trail rather than isolated points.
 
-            Destination branding studies show that a successful brand is a coherent memory structure created by
-            repeated trustworthy cues. Fragmented messaging reduces conversion even when intrinsic destination quality is
-            high. In gateway geographies, cluster branding can improve recall by linking multiple nearby sites under a
-            shared narrative. This is highly relevant to Siliguri, where neighboring monasteries can be packaged as a
-            connected cultural trail.
+            Digital tourism research emphasizes discoverability and metadata reliability. Many travel decisions are
+            influenced by search, maps, reviews, and short-form content. Missing timings, unclear route details,
+            inconsistent naming, and weak multilingual communication reduce trust and intent-to-visit. Literature on
+            platform trust indicates that accuracy, consistency, and responsive updates often produce better outcomes
+            than high-spend campaigns with weak information quality.
 
-            Digital tourism research emphasizes discoverability and metadata quality. Travelers often make decisions
-            through search, map listings, reviews, and short-form content. Missing hours, unclear route information,
-            inconsistent naming, and weak multilingual communication reduce both trust and visit intent. Literature on
-            digital trust further suggests that accuracy and responsiveness can outperform expensive campaigns.
+            Responsible marketing scholarship warns that sacred destinations can be adversely affected by aggressive or
+            culturally insensitive promotion. Ethical communication should include visitor conduct cues, contextual
+            meaning, and preservation values. For monastery-linked destinations, this is not optional; it is central to
+            long-term credibility.
 
-            Responsible marketing literature warns that sacred and heritage destinations can be harmed by aggressive
-            promotion if visitor conduct guidance is absent. Ethical destination communication should frame behaviour
-            expectations, cultural context, and preservation values. This approach protects site dignity while still
-            enabling informed tourism growth.
+            Policy context from Government of India indicates sustained attention to Buddhist tourism through thematic
+            circuit initiatives. Yet local execution quality varies, and many feeder destinations remain under-packaged.
+            This proposal is significant because it addresses that implementation layer: how to convert policy momentum
+            into practical, respectful, and measurable destination marketing actions in a specific regional context.
 
-            Policy references from Government of India indicate ongoing national attention to Buddhist tourism through
-            thematic circuit development and related schemes. Yet policy momentum at macro level does not automatically
-            translate into local communication quality. Research therefore supports local audits that assess channel
-            performance, stakeholder coordination, and practical productization pathways.
-
-            The reviewed literature collectively supports a hybrid analytical frame for this PTS-2 proposal: STP
-            analysis, 7Ps interpretation, digital audit logic, partnership mapping, and responsible-tourism filters.
-            This framework is suitable for a student-level marketing project that seeks both conceptual clarity and
-            implementable recommendations.
+            The study is therefore positioned at the intersection of strategy and cultural responsibility. It is
+            expected to generate actionable insights for segment selection, channel design, local partnerships, and
+            performance monitoring while protecting sacred identity.
             """,
             2,
         ),
