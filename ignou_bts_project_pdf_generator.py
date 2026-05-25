@@ -7,6 +7,7 @@ Outputs are produced in both PDF and editable Microsoft Word (.docx) formats.
 from __future__ import annotations
 
 import datetime as dt
+import math
 import os
 import re
 import textwrap
@@ -1201,90 +1202,414 @@ def build_pts2_content() -> Tuple[str, List[Tuple[str, str]], List[List[str]]]:
     return title, sections, synthetic_table
 
 
-def build_pts1_synopsis_content() -> Tuple[str, str]:
+def build_pts1_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]:
     title = "Role of Salugara Monastery in Promoting Buddhist Cultural Tourism in Siliguri Region"
-    synopsis = """
-    Background and Rationale:
-    Salugara Monastery in the Siliguri region is a living Buddhist institution with strong spiritual value and
-    visible tourism relevance. The site attracts pilgrims, culture-oriented visitors, and transit tourists moving
-    towards Darjeeling, Kalimpong, and Sikkim corridors. Despite this importance, there is limited structured
-    local documentation on how the monastery contributes to Buddhist cultural tourism, visitor learning, and local
-    livelihood support. The proposed project addresses this gap through field-based case study research.
+    sections = [
+        (
+            "Introduction",
+            """
+            Tourism in contemporary India increasingly values experience quality, heritage meaning, and local cultural
+            authenticity. Within this context, Buddhist cultural tourism has emerged as an important segment because it
+            combines pilgrimage, spiritual travel, heritage learning, and intercultural contact. The Siliguri region is
+            strategically located as a movement gateway toward Darjeeling hills, Kalimpong, Sikkim, and adjoining
+            Himalayan circuits. This mobility context gives religious-cultural destinations in and around Siliguri high
+            tourism potential, even when they are not formally marketed as major stand-alone attractions.
 
-    Aim and Objectives:
-    The aim is to evaluate the role of Salugara Monastery in promoting Buddhist cultural tourism in the Siliguri
-    region and to propose practical recommendations for responsible growth. The key objectives are: (1) to profile
-    visitor motivation, behaviour, and flow patterns; (2) to document cultural and ritual heritage interpretation at
-    the site; (3) to assess local economic linkages around transport, food, retail, and short-stay demand; (4) to
-    identify constraints related to signage, interpretation, amenities, and management coordination; and (5) to
-    suggest a sustainable and culturally respectful development model.
+            Salugara Monastery, known for its visible stupa and spiritual environment, is one such destination that
+            attracts diverse visitor groups. These include practicing Buddhists, peace-seeking domestic travelers,
+            architecture-curious visitors, and transit tourists who stop for short visits while moving to nearby
+            hill destinations. Local residents and small businesses also interact with this visitor flow, creating
+            social and economic linkages that deserve closer academic examination. However, much of the narrative
+            around the site remains informal, and there is limited student-level field documentation integrating
+            culture, tourism behaviour, and community outcomes in one framework.
 
-    Methodology and Data:
-    The study will use a mixed-method design with primary and secondary data. Primary data will be collected through
-    visitor questionnaires, semi-structured interviews with monastic representatives and local stakeholders, and
-    direct field observation. Secondary material will include tourism policy documents, IGNOU study resources, and
-    published tourism statistics. Data will be classified into themes such as cultural value, visitor experience,
-    local benefits, and sustainability risks. Basic percentage analysis and thematic interpretation will be used.
+            The proposed study is designed as a focused case-based investigation under the PTS-1 theme of Indian
+            Culture, Environment and Tourism. It aims to understand how Salugara Monastery contributes to Buddhist
+            cultural tourism and how its strengths can be supported through respectful destination practices. The
+            study is guided by the principle that sacred institutions should not be treated as commercial attractions
+            in a conventional sense; tourism interventions should therefore protect sanctity while improving visitor
+            understanding and local benefit.
+            """,
+            1,
+        ),
+        (
+            "Review of Literature",
+            """
+            Literature on cultural tourism argues that destinations perform best when tangible heritage and intangible
+            practices are interpreted together. In religious contexts, visitor satisfaction is shaped not only by
+            architecture and visuals but also by ritual atmosphere, authenticity, and emotional safety. Several
+            scholars in heritage tourism have emphasized that sacred sites are living institutions; therefore, visitor
+            management must respect site-specific codes rather than apply generic mass-tourism models.
 
-    Scope, Work Plan, and Expected Outcome:
-    The study area will focus on Salugara and selective comparative references to nearby monasteries where relevant.
-    Work will proceed in four stages: topic finalization and tool design; field data collection; analysis and chapter
-    drafting; and final report writing with bibliography and annexures. The expected outcome is a grounded case study
-    showing how sacred authenticity, interpretation quality, and community participation can together improve Buddhist
-    cultural tourism without compromising monastic dignity. The report will provide practical suggestions for student
-    research, local stakeholders, and destination planning discussions.
+            Pilgrimage tourism studies show that motivation is often layered: devotion may coexist with curiosity,
+            personal reflection, and educational intent. This mixed motivation pattern is important for monasteries,
+            where some visitors seek formal prayer engagement while others seek peace, quiet, and cultural learning.
+            Existing work in religious tourism also indicates that first-time visitors benefit significantly from clear
+            interpretation support, especially when local symbols and ritual etiquette are unfamiliar.
+
+            Tourism planning literature on medium-scale gateway cities suggests that transit geography can create
+            under-recognized opportunities. Sites that are not primary endpoints can still become meaningful stops if
+            route readability, communication quality, and local partnerships are improved. In the Siliguri context,
+            this insight is relevant because many tourists are already in motion across regional circuits. A monastery
+            such as Salugara can therefore serve both as a destination and as a meaningful cultural pause-point.
+
+            Sustainable tourism scholarship adds that local acceptance depends on perceived fairness of benefit
+            distribution and visible management of externalities. Around religious destinations, recurring challenges
+            include unstructured parking, litter pressure, unclear wayfinding, and etiquette non-compliance by
+            uninformed visitors. Studies suggest that small but consistent measures such as multilingual signage,
+            visitor orientation, and coordinated cleanliness routines can substantially improve experience quality.
+
+            Policy-level references from Government of India indicate continued attention toward Buddhist tourism
+            development through thematic circuit initiatives. While large circuit schemes often focus on major nodes,
+            local-level feeder destinations remain crucial to broadening access and dispersing visitor flow. This
+            creates a policy-practice gap where smaller cultural sites can benefit from locally tailored planning even
+            without large capital projects.
+
+            Research on community-linked tourism indicates that micro-economies around sacred destinations often grow
+            through transport services, food outlets, local retail, and short-duration purchases. However, these gains
+            remain fragmented when destinations lack coordinated packaging and interpretation. From a case-study
+            perspective, Salugara provides an opportunity to test how sacred integrity, visitor literacy, and local
+            economic linkages can be aligned through practical, low-cost interventions.
+
+            The literature therefore supports a multi-dimensional framework for the present synopsis: sacred
+            authenticity, visitor profile, interpretation quality, local livelihood linkage, governance coordination,
+            and environmental responsibility. This framework guides the proposed data tools and chapter-level analysis.
+            """,
+            2,
+        ),
+        (
+            "Objective of the Study",
+            """
+            Primary Objective:
+            To examine the role of Salugara Monastery in promoting Buddhist cultural tourism in the Siliguri region
+            and to develop recommendations for respectful and sustainable destination improvement.
+
+            Specific Objectives:
+            1. To profile the types of visitors, their motivations, and movement patterns at Salugara Monastery.
+            2. To assess how the monastery communicates and preserves Buddhist cultural values for visitors.
+            3. To identify local economic linkages associated with monastery-related visitor flow.
+            4. To evaluate infrastructure, interpretation, and management gaps affecting visitor experience.
+            5. To formulate practical recommendations that balance sanctity, learning, and tourism utility.
+
+            Scope and Delimitation:
+            The study focuses on Salugara as the main case and uses nearby monastery references only where useful for
+            contextual comparison. The work is designed for academic analysis and does not include financial auditing
+            of religious institutions. Findings will be interpreted as grounded case evidence rather than universal
+            claims for all Buddhist destinations.
+            """,
+            1,
+        ),
+        (
+            "Methodology",
+            """
+            Research Design:
+            The proposed design is mixed-method, combining quantitative survey inputs with qualitative interviews and
+            structured observation. This approach is suitable because the topic includes measurable indicators
+            (visitor profile, satisfaction cues, spending tendency) and interpretive dimensions (sacred boundaries,
+            cultural understanding, local perceptions).
+
+            Data Sources:
+            Primary data will be collected through visitor questionnaires, stakeholder interviews, and observational
+            field notes. Secondary data will include IGNOU materials, official tourism statistics, policy notes, and
+            selected published literature relevant to cultural and religious tourism.
+
+            Indicative Sampling Plan:
+            - Visitor survey respondents at site entry/exit windows.
+            - Monastic/management interviews for institutional perspective.
+            - Local business and resident interviews for community linkage evidence.
+            - Observations across weekday and weekend periods to capture variation.
+
+            Tools:
+            Annexure-linked tools will be used: visitor questionnaire, monastic interview schedule, local stakeholder
+            interview schedule, and structured observation checklist. These tools are attached in synopsis annexure so
+            that supervisor can review methodological fit before field deployment.
+
+            Data Handling and Analysis:
+            Survey entries will be tabulated and interpreted through basic percentage logic. Interview notes will be
+            coded into themes such as heritage meaning, visitor conduct, infrastructure concern, and economic linkage.
+            Observational inputs will be used to validate or challenge respondent perceptions. Contradictory findings
+            will be documented rather than removed to preserve analytical integrity.
+
+            Work Plan:
+            Stage 1: Tool finalization and supervisor consultation.
+            Stage 2: Field data collection and concurrent field notes.
+            Stage 3: Data classification, thematic coding, and chapter drafting.
+            Stage 4: Final writing, bibliography completion, annexure alignment, and formatting.
+
+            Ethical and Practical Considerations:
+            Interactions will be voluntary and non-intrusive. No personal-sensitive details will be published without
+            consent. Ritual spaces will be approached respectfully, and data collection will avoid prayer disruption.
+            The methodology is designed to produce academically valid yet practically usable findings for BTS-level
+            project evaluation.
+            """,
+            2,
+        ),
+        (
+            "Conclusion",
+            """
+            The proposed study is academically relevant and operationally feasible within the BTS framework. It aligns
+            with PTS-1 expectations by linking Indian cultural context, fieldwork evidence, and practical tourism
+            analysis. Salugara Monastery offers a strong case context because it combines sacred identity, tourism
+            visibility, and local socio-economic interaction in a compact regional setting.
+
+            The synopsis argues that meaningful Buddhist cultural tourism development must follow a sacred-first logic:
+            cultural dignity and monastic norms remain central, while visitor interpretation and community participation
+            are strengthened through careful planning. The project is expected to generate recommendations that are
+            realistic for local stakeholders and useful for future student research.
+
+            In summary, the proposal is designed to move from descriptive narration to evidence-based analysis. By
+            integrating visitor behaviour, institutional perspective, and local linkage data, the study intends to
+            provide a balanced and responsible tourism framework for Salugara and comparable cultural destinations.
+            """,
+            1,
+        ),
+        (
+            "Reference",
+            """
+            1. IGNOU. Project Guide BTS (PTS-1, PTS-2), valid from July 2021 session.
+            2. Ministry of Tourism, Government of India. State/UT-wise Domestic and Foreign Tourist Visits (2021-2022).
+            3. PIB, Government of India. Buddhist Thematic Circuit under Swadesh Darshan Scheme (2025 release).
+            4. PIB, Ministry of Tourism. Attracting Tourists to Buddhist Circuits (2026 release).
+            5. Richards, G. Cultural Tourism: Trends and Research Perspectives.
+            6. Timothy, D. and Boyd, S. Heritage Tourism. Routledge.
+            7. Swarbrooke, J. Sustainable Tourism Management. CABI.
+            8. UNWTO publications on culture-linked and religious tourism.
+            9. Selected field preparation notes and draft tool schedules prepared by researcher.
+            """,
+            1,
+        ),
+    ]
+
+    annexure = """
+    Annexure to Synopsis (Proposed Research Tools):
+    - Annexure A: Visitor Questionnaire
+    - Annexure B: Monastic/Management Interview Schedule
+    - Annexure C: Local Business and Resident Interview Schedule
+    - Annexure D: Structured Observation Checklist
+
+    Note: These tools are attached for supervisor review at synopsis stage. Final project annexure will include
+    revised versions actually used in fieldwork.
     """
-    return title, synopsis
+    return title, sections, annexure
 
 
-def build_pts2_synopsis_content() -> Tuple[str, str]:
+def build_pts2_synopsis_content() -> Tuple[str, List[Tuple[str, str, int]], str]:
     title = "Marketing Strategies for Buddhist Circuit Tourism in Siliguri: A Study of Salugara and Nearby Monasteries"
-    synopsis = """
-    Background and Problem Statement:
-    Siliguri has strong potential to function as a Buddhist cultural tourism gateway because of its connectivity and
-    proximity to important monastery sites. However, promotion of Salugara and nearby monasteries remains fragmented.
-    Many visits are incidental rather than itinerary-driven, and there is limited integrated branding, digital
-    discoverability, and travel-trade packaging. The proposed PTS-2 study examines this marketing gap and develops a
-    practical strategy suitable for sacred-cultural destinations.
+    sections = [
+        (
+            "Introduction",
+            """
+            Tourism marketing for sacred-cultural destinations requires balance between visibility and respect.
+            Unlike purely leisure products, monastery-linked destinations are evaluated by visitors on communication
+            quality, cultural sensitivity, route clarity, and emotional credibility. The Siliguri region presents a
+            practical case where destination potential is significant but coordinated market positioning remains weak.
 
-    Aim and Objectives:
-    The aim is to design workable marketing strategies for Buddhist circuit tourism in Siliguri with focus on
-    Salugara and nearby monasteries. The objectives are: (1) to assess current destination positioning and market
-    visibility; (2) to identify high-potential visitor segments and their expectations; (3) to evaluate existing
-    promotion channels, digital presence, and stakeholder coordination; (4) to apply STP and services marketing
-    concepts for strategy design; and (5) to recommend a phased action framework with measurable indicators.
+            Salugara and nearby monasteries receive visitors through pilgrimage intent, cultural curiosity, and transit
+            movement. However, current promotion is often fragmented: many travelers discover sites incidentally rather
+            than through planned Buddhist-circuit itineraries. This creates low conversion from potential demand to
+            structured visitation. It also limits economic benefits that could arise from improved stay duration and
+            better route design.
 
-    Methodology and Data Sources:
-    The study will adopt a mixed-method marketing audit approach. Primary data will include tourist surveys, local
-    stakeholder interactions, and semi-structured interviews with tourism-related actors. A structured digital audit
-    will review search discoverability, map listing consistency, social media clarity, and itinerary communication.
-    Secondary data will include policy references on Buddhist circuit development and relevant tourism statistics.
-    Analysis will use percentage interpretation, SWOT framing, and STP logic for actionable recommendations.
+            The proposed PTS-2 synopsis addresses this gap by framing Siliguri Buddhist tourism through a marketing
+            strategy lens. The study is not intended to commercialize sacred practice; instead, it seeks to strengthen
+            responsible communication, informed visitation, and collaborative destination management. The proposal
+            therefore emphasizes value-sensitive marketing rather than high-volume promotional tactics.
+            """,
+            1,
+        ),
+        (
+            "Review of Literature",
+            """
+            Tourism marketing literature establishes that destination competitiveness depends on clear positioning and
+            coherent communication across touchpoints. In the STP framework, segmentation identifies visitor groups,
+            targeting selects priority audiences, and positioning articulates the destination promise. For sacred
+            destinations, positioning must include authenticity, etiquette, and meaning, not only attraction imagery.
 
-    Scope, Deliverables, and Work Plan:
-    The geographic scope will be Siliguri and nearby monastery nodes linked to practical circuit development. The
-    study will not examine internal religious administration and will remain focused on tourism marketing dimensions.
-    The work plan covers tool preparation, field data collection, channel audit, analysis, and final report drafting.
-    Expected deliverables include segment-specific strategy suggestions, responsible promotion guidelines, partnership
-    pathways, and a KPI-based monitoring framework. The final report is expected to support educational evaluation as
-    well as practical discussion on culturally sensitive destination marketing.
+            Services marketing scholarship (7Ps) highlights that people, process, and physical evidence are especially
+            critical in tourism experiences. For monastery destinations, front-facing behaviour, route guidance,
+            interpretive clarity, and calm atmosphere influence visitor confidence as much as promotional campaigns do.
+            This indicates that marketing strategy should include on-ground service design, not only media outreach.
+
+            Destination branding studies show that a successful brand is a coherent memory structure created by
+            repeated trustworthy cues. Fragmented messaging reduces conversion even when intrinsic destination quality is
+            high. In gateway geographies, cluster branding can improve recall by linking multiple nearby sites under a
+            shared narrative. This is highly relevant to Siliguri, where neighboring monasteries can be packaged as a
+            connected cultural trail.
+
+            Digital tourism research emphasizes discoverability and metadata quality. Travelers often make decisions
+            through search, map listings, reviews, and short-form content. Missing hours, unclear route information,
+            inconsistent naming, and weak multilingual communication reduce both trust and visit intent. Literature on
+            digital trust further suggests that accuracy and responsiveness can outperform expensive campaigns.
+
+            Responsible marketing literature warns that sacred and heritage destinations can be harmed by aggressive
+            promotion if visitor conduct guidance is absent. Ethical destination communication should frame behaviour
+            expectations, cultural context, and preservation values. This approach protects site dignity while still
+            enabling informed tourism growth.
+
+            Policy references from Government of India indicate ongoing national attention to Buddhist tourism through
+            thematic circuit development and related schemes. Yet policy momentum at macro level does not automatically
+            translate into local communication quality. Research therefore supports local audits that assess channel
+            performance, stakeholder coordination, and practical productization pathways.
+
+            The reviewed literature collectively supports a hybrid analytical frame for this PTS-2 proposal: STP
+            analysis, 7Ps interpretation, digital audit logic, partnership mapping, and responsible-tourism filters.
+            This framework is suitable for a student-level marketing project that seeks both conceptual clarity and
+            implementable recommendations.
+            """,
+            2,
+        ),
+        (
+            "Objective of the Study",
+            """
+            Primary Objective:
+            To design practical and culturally respectful marketing strategies for Buddhist circuit tourism in Siliguri
+            with specific focus on Salugara and selected nearby monasteries.
+
+            Specific Objectives:
+            1. To assess current visibility and positioning of monastery-linked tourism in the study area.
+            2. To identify priority visitor segments and their information needs.
+            3. To evaluate present promotion channels, digital quality, and travel trade linkage strength.
+            4. To develop STP-driven strategy recommendations for communication and itinerary conversion.
+            5. To propose a monitoring framework using measurable awareness, conversion, and experience indicators.
+
+            Study Boundaries:
+            The project focuses on destination marketing dimensions and excludes internal religious governance. The
+            output is intended as a strategy-oriented student study with local practical relevance.
+            """,
+            1,
+        ),
+        (
+            "Methodology",
+            """
+            Research Design:
+            The study uses a mixed-method marketing audit design, combining tourist perception data, stakeholder
+            insights, and digital channel assessment. This design is appropriate because destination marketing quality
+            is shaped by both measurable outcomes and contextual interpretation.
+
+            Data Sources:
+            Primary data will include tourist questionnaires, interviews with local tourism stakeholders, and selected
+            interactions with service providers linked to visitor movement. Secondary data will include policy releases,
+            official tourism statistics, and conceptual marketing literature.
+
+            Proposed Tools:
+            - Tourist survey instrument for awareness, motivation, and communication clarity.
+            - Stakeholder interview schedule for packaging barriers and channel observations.
+            - Digital audit checklist for search, maps, and social consistency.
+            - Content calendar and KPI templates for implementation planning.
+            These tools are included as synopsis annexure attachments.
+
+            Sampling and Field Process:
+            Data collection will be done across varied time windows to account for movement variation. Respondents will
+            be selected through practical purposive sampling aligned to project scope. Field notes will document
+            contextual conditions influencing interpretation, such as transit pressure and service readiness.
+
+            Analytical Approach:
+            Survey data will be summarized using basic percentages. Qualitative responses will be grouped under themes:
+            awareness pathways, packaging constraints, communication gaps, and strategic opportunities. A SWOT lens and
+            STP interpretation will be used to convert evidence into strategy options. Recommended actions will be
+            arranged in phased format (foundation, productization, scale with safeguards).
+
+            Reliability and Ethics:
+            Triangulation across tourist, stakeholder, and audit inputs will be used to improve reliability. Respondent
+            participation will be voluntary, and sensitive personal data will not be disclosed. The study will avoid
+            misleading claims and will differentiate observed evidence from inference.
+
+            Expected Deliverable Form:
+            The methodology is designed to produce a proposal that can transition smoothly into full PTS-2 project
+            writing, with direct alignment between objectives, tools, analysis, and annexure documentation.
+            """,
+            2,
+        ),
+        (
+            "Conclusion",
+            """
+            The proposed PTS-2 synopsis establishes that Siliguri Buddhist tourism has strong positioning potential but
+            currently lacks integrated marketing execution. The study is designed to address this through a structured
+            and responsible strategy framework rather than purely promotional expansion.
+
+            By combining STP logic, service-design perspective, digital audit findings, and stakeholder evidence, the
+            project aims to produce recommendations that are academically valid and practically usable. The proposal
+            also emphasizes that sacred destination marketing must preserve cultural dignity while improving access,
+            clarity, and visitor preparedness.
+
+            Overall, the synopsis supports a feasible, field-linked, and policy-aware project path. It is expected to
+            contribute to both BTS academic requirements and local discussion on mindful Buddhist circuit development.
+            """,
+            1,
+        ),
+        (
+            "Reference",
+            """
+            1. IGNOU. BTS Project Guide (PTS-1, PTS-2), valid from July 2021.
+            2. Ministry of Tourism, Government of India. Domestic and Foreign Tourist Visits by State/UT (2021-2022).
+            3. PIB, Government of India. Buddhist Thematic Circuit under Swadesh Darshan (2025).
+            4. PIB, Ministry of Tourism. Attracting Tourists to Buddhist Circuits (2026).
+            5. Kotler, P., Bowen, J., and Makens, J. Marketing for Hospitality and Tourism.
+            6. Middleton, V., Fyall, A., Morgan, M., and Ranchhod, A. Marketing in Travel and Tourism.
+            7. Chaffey, D. Digital Marketing: Strategy and Practice.
+            8. UNWTO reports on tourism and culture synergies.
+            9. Researcher-prepared tool drafts and field planning notes.
+            """,
+            1,
+        ),
+    ]
+    annexure = """
+    Annexure to Synopsis (Proposed Research Tools):
+    - Annexure A: Tourist Survey Instrument
+    - Annexure B: Stakeholder Interview Schedule
+    - Annexure C: Digital Audit Checklist
+    - Annexure D: One-Month Content Calendar Template
+    - Annexure E: KPI Dashboard Template
+
+    Note: Annexure tools are attached at synopsis stage for supervisor review and are retained in final project
+    annexure after refinement.
     """
-    return title, synopsis
+    return title, sections, annexure
+
+
+def _split_section_into_pages(text: str, required_pages: int) -> List[List[str]]:
+    paragraphs = para_list(text)
+    if not paragraphs:
+        paragraphs = ["____________________"]
+    if required_pages <= 1:
+        return [paragraphs]
+
+    chunk_size = max(1, math.ceil(len(paragraphs) / required_pages))
+    chunks = [paragraphs[i : i + chunk_size] for i in range(0, len(paragraphs), chunk_size)]
+
+    if len(chunks) > required_pages:
+        merged = chunks[: required_pages - 1]
+        last = []
+        for extra in chunks[required_pages - 1 :]:
+            last.extend(extra)
+        merged.append(last)
+        chunks = merged
+
+    while len(chunks) < required_pages:
+        chunks.append(["Space reserved for additional notes and supervisor inputs."])
+    return chunks
+
+
+def _build_synopsis_toc_lines(sections: List[Tuple[str, str, int]]) -> Tuple[List[str], int]:
+    lines = []
+    page_no = 1
+    for name, _, page_count in sections:
+        plural = "page" if page_count == 1 else "pages"
+        lines.append(f"{name} ........................................ {page_no} ({page_count} {plural})")
+        page_no += page_count
+    return lines, page_no
 
 
 def build_synopsis_pdf(
     output_path: str,
     title: str,
     course_code: str,
-    synopsis_text: str,
+    sections: List[Tuple[str, str, int]],
+    annexure_text: str,
     logo_path: Optional[str] = None,
 ) -> int:
     styles = get_styles()
-    left_body = ParagraphStyle(
-        "left_body",
-        parent=styles["body"],
-        alignment=TA_LEFT,
-    )
+    left_body = ParagraphStyle("left_body", parent=styles["body"], alignment=TA_LEFT)
 
     story = []
     if logo_path and os.path.exists(logo_path):
@@ -1293,7 +1618,7 @@ def build_synopsis_pdf(
         story.append(img)
         story.append(Spacer(1, 8))
 
-    story.append(Paragraph("PROJECT PROPOSAL PROFORMA (ANNEXURE A)", styles["title"]))
+    story.append(Paragraph("PROJECT PROPOSAL / SYNOPSIS", styles["title"]))
     story.append(Paragraph("INDIRA GANDHI NATIONAL OPEN UNIVERSITY", styles["subtitle"]))
     story.append(Paragraph("B.A. TOURISM STUDIES (BTS)", styles["subtitle"]))
     story.append(Spacer(1, 8))
@@ -1310,16 +1635,40 @@ def build_synopsis_pdf(
     ]
     for field in candidate_fields:
         story.append(Paragraph(field, left_body))
-
-    story.append(Spacer(1, 8))
-    story.append(Paragraph("Title of the Project", styles["h2"]))
+    story.append(Paragraph("Project Proposal - Topic", styles["h2"]))
     story.append(Paragraph(title, left_body))
-    story.append(Spacer(1, 8))
-    story.append(Paragraph("Synopsis / Proposal (about 400 words)", styles["h2"]))
-    for p in para_list(synopsis_text):
-        story.append(Paragraph(textwrap.fill(p, width=175), styles["body"]))
+    story.append(PageBreak())
 
-    story.append(Spacer(1, 10))
+    toc_lines, annexure_start_page = _build_synopsis_toc_lines(sections)
+    story.append(Paragraph("TABLE OF CONTENTS", styles["h1"]))
+    for line in toc_lines:
+        story.append(Paragraph(line, left_body))
+    story.append(Paragraph(f"Annexure ........................................ {annexure_start_page}", left_body))
+    story.append(PageBreak())
+
+    synopsis_word_parts = []
+    for idx, (section_name, section_text, required_pages) in enumerate(sections):
+        page_chunks = _split_section_into_pages(section_text, required_pages)
+        for chunk_idx, chunk in enumerate(page_chunks):
+            heading = section_name if chunk_idx == 0 else f"{section_name} (continued)"
+            story.append(Paragraph(heading, styles["h1"]))
+            if idx == 0 and chunk_idx == 0:
+                story.append(Paragraph(f"Project Proposal - Topic: {title}", left_body))
+            for paragraph in chunk:
+                story.append(Paragraph(textwrap.fill(paragraph, width=175), styles["body"]))
+                synopsis_word_parts.append(paragraph)
+            is_last_chunk = chunk_idx == len(page_chunks) - 1
+            is_last_section = idx == len(sections) - 1
+            if not is_last_section or not is_last_chunk:
+                story.append(PageBreak())
+
+    story.append(PageBreak())
+    story.append(Paragraph("ANNEXURE TO SYNOPSIS", styles["h1"]))
+    for p in para_list(annexure_text):
+        story.append(Paragraph(textwrap.fill(p, width=175), styles["body"]))
+        synopsis_word_parts.append(p)
+
+    story.append(PageBreak())
     story.append(Paragraph("LETTER/CERTIFICATE OF APPROVAL (By the Supervisor)", styles["h2"]))
     approval = """
     I hereby certify that the proposal for the Project entitled ____________________ by
@@ -1334,8 +1683,6 @@ def build_synopsis_pdf(
     """
     for p in para_list(approval):
         story.append(Paragraph(p, left_body))
-
-    story.append(Spacer(1, 8))
     story.append(
         Paragraph(
             "Checklist: Keep one copy with yourself. Submit one signed proposal copy to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU.",
@@ -1354,14 +1701,15 @@ def build_synopsis_pdf(
         author="IGNOU BTS Candidate",
     )
     doc.build(story)
-    return words(synopsis_text)
+    return words("\n\n".join(synopsis_word_parts))
 
 
 def build_synopsis_docx(
     output_path: str,
     title: str,
     course_code: str,
-    synopsis_text: str,
+    sections: List[Tuple[str, str, int]],
+    annexure_text: str,
     logo_path: Optional[str] = None,
 ) -> int:
     doc = Document()
@@ -1371,7 +1719,7 @@ def build_synopsis_docx(
         doc.add_picture(logo_path, width=Cm(2.6))
         doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    add_docx_paragraph(doc, "PROJECT PROPOSAL PROFORMA (ANNEXURE A)", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=16)
+    add_docx_paragraph(doc, "PROJECT PROPOSAL / SYNOPSIS", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=16)
     add_docx_paragraph(doc, "INDIRA GANDHI NATIONAL OPEN UNIVERSITY", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=14)
     add_docx_paragraph(doc, "B.A. TOURISM STUDIES (BTS)", align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=13)
     add_docx_heading(doc, "Candidate Information (to be filled by the candidate)")
@@ -1387,13 +1735,40 @@ def build_synopsis_docx(
     ]
     for field in candidate_fields:
         add_docx_paragraph(doc, field, align=WD_ALIGN_PARAGRAPH.LEFT)
-
-    add_docx_heading(doc, "Title of the Project")
+    add_docx_heading(doc, "Project Proposal - Topic")
     add_docx_paragraph(doc, title, align=WD_ALIGN_PARAGRAPH.LEFT)
-    add_docx_heading(doc, "Synopsis / Proposal (about 400 words)")
-    for p in para_list(synopsis_text):
-        add_docx_paragraph(doc, p)
+    doc.add_page_break()
 
+    toc_lines, annexure_start_page = _build_synopsis_toc_lines(sections)
+    add_docx_heading(doc, "TABLE OF CONTENTS")
+    for line in toc_lines:
+        add_docx_paragraph(doc, line, align=WD_ALIGN_PARAGRAPH.LEFT)
+    add_docx_paragraph(doc, f"Annexure ........................................ {annexure_start_page}", align=WD_ALIGN_PARAGRAPH.LEFT)
+    doc.add_page_break()
+
+    synopsis_word_parts = []
+    for idx, (section_name, section_text, required_pages) in enumerate(sections):
+        page_chunks = _split_section_into_pages(section_text, required_pages)
+        for chunk_idx, chunk in enumerate(page_chunks):
+            heading = section_name if chunk_idx == 0 else f"{section_name} (continued)"
+            add_docx_heading(doc, heading)
+            if idx == 0 and chunk_idx == 0:
+                add_docx_paragraph(doc, f"Project Proposal - Topic: {title}", align=WD_ALIGN_PARAGRAPH.LEFT)
+            for paragraph in chunk:
+                add_docx_paragraph(doc, paragraph)
+                synopsis_word_parts.append(paragraph)
+            is_last_chunk = chunk_idx == len(page_chunks) - 1
+            is_last_section = idx == len(sections) - 1
+            if not is_last_section or not is_last_chunk:
+                doc.add_page_break()
+
+    doc.add_page_break()
+    add_docx_heading(doc, "ANNEXURE TO SYNOPSIS")
+    for p in para_list(annexure_text):
+        add_docx_paragraph(doc, p, align=WD_ALIGN_PARAGRAPH.LEFT)
+        synopsis_word_parts.append(p)
+
+    doc.add_page_break()
     add_docx_heading(doc, "LETTER/CERTIFICATE OF APPROVAL (By the Supervisor)")
     approval = """
     I hereby certify that the proposal for the Project entitled ____________________ by
@@ -1408,21 +1783,21 @@ def build_synopsis_docx(
     """
     for p in para_list(approval):
         add_docx_paragraph(doc, p, align=WD_ALIGN_PARAGRAPH.LEFT)
-
     add_docx_paragraph(
         doc,
         "Checklist: Keep one copy with yourself. Submit one signed proposal copy to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU.",
         align=WD_ALIGN_PARAGRAPH.LEFT,
     )
+
     doc.save(output_path)
-    return words(synopsis_text)
+    return words("\n\n".join(synopsis_word_parts))
 
 
 def write_submission_workflow(path: str):
     content = """# IGNOU BTS PTS-1 / PTS-2 Submission Workflow (From Project Guide)
 
 1. **Select topic** under approved PTS-1 and PTS-2 themes.
-2. **Prepare synopsis/project proposal** (about 400 words) using Annexure A format.
+2. **Prepare synopsis/project proposal** using Annexure A format (official guide indicates around 400 words, but some centres ask expanded sectioned synopsis with page-wise structure).
 3. **Get supervisor approval signature** on proposal proforma.
 4. **Send proposal copy** to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU; keep one copy.
 5. **Do not change topic wording** after proposal submission.
@@ -1763,8 +2138,8 @@ def main():
 
     pts1_title, pts1_sections, pts1_table = build_pts1_content()
     pts2_title, pts2_sections, pts2_table = build_pts2_content()
-    pts1_synopsis_title, pts1_synopsis = build_pts1_synopsis_content()
-    pts2_synopsis_title, pts2_synopsis = build_pts2_synopsis_content()
+    pts1_synopsis_title, pts1_synopsis_sections, pts1_synopsis_annexure = build_pts1_synopsis_content()
+    pts2_synopsis_title, pts2_synopsis_sections, pts2_synopsis_annexure = build_pts2_synopsis_content()
 
     pts1_pdf = os.path.join(out_dir, "PTS-1_Salugara_Monastery_Project.pdf")
     pts2_pdf = os.path.join(out_dir, "PTS-2_Buddhist_Circuit_Marketing_Project.pdf")
@@ -1808,28 +2183,32 @@ def main():
         output_path=pts1_synopsis_pdf,
         title=pts1_synopsis_title,
         course_code="PTS-1",
-        synopsis_text=pts1_synopsis,
+        sections=pts1_synopsis_sections,
+        annexure_text=pts1_synopsis_annexure,
         logo_path=logo_path,
     )
     pts2_synopsis_pdf_words = build_synopsis_pdf(
         output_path=pts2_synopsis_pdf,
         title=pts2_synopsis_title,
         course_code="PTS-2",
-        synopsis_text=pts2_synopsis,
+        sections=pts2_synopsis_sections,
+        annexure_text=pts2_synopsis_annexure,
         logo_path=logo_path,
     )
     pts1_synopsis_docx_words = build_synopsis_docx(
         output_path=pts1_synopsis_docx,
         title=pts1_synopsis_title,
         course_code="PTS-1",
-        synopsis_text=pts1_synopsis,
+        sections=pts1_synopsis_sections,
+        annexure_text=pts1_synopsis_annexure,
         logo_path=logo_path,
     )
     pts2_synopsis_docx_words = build_synopsis_docx(
         output_path=pts2_synopsis_docx,
         title=pts2_synopsis_title,
         course_code="PTS-2",
-        synopsis_text=pts2_synopsis,
+        sections=pts2_synopsis_sections,
+        annexure_text=pts2_synopsis_annexure,
         logo_path=logo_path,
     )
     write_submission_workflow(workflow_path)

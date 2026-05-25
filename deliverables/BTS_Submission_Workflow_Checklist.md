@@ -1,7 +1,7 @@
 # IGNOU BTS PTS-1 / PTS-2 Submission Workflow (From Project Guide)
 
 1. **Select topic** under approved PTS-1 and PTS-2 themes.
-2. **Prepare synopsis/project proposal** (about 400 words) using Annexure A format.
+2. **Prepare synopsis/project proposal** using Annexure A format (official guide indicates around 400 words, but some centres ask expanded sectioned synopsis with page-wise structure).
 3. **Get supervisor approval signature** on proposal proforma.
 4. **Send proposal copy** to Programme Coordinator (BTS/BAVTM), SOTHSM, IGNOU; keep one copy.
 5. **Do not change topic wording** after proposal submission.
